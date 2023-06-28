@@ -12,8 +12,12 @@
 .white-text{
   color: white;
   font-family: 'Source Sans 3', sans-serif;
-  background: grey;
+  background: #0254a6;
   width: 100vw
+}
+.title{
+  font-size: 4vw;
+  padding-top: 1vh;
 }
 .App-logo {
   height: 40vmin;
