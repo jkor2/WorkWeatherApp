@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 function Functionality() {
   const [locationLoaded, setLocationLoaded] = React.useState(false);
@@ -18,8 +19,43 @@ function Functionality() {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }, []);
 
-  //Ask for current location
+  //Search bar section ############################
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log(string, results);
+  };
 
+  const handleOnHover = (result) => {
+    // the item hovered
+    console.log(result);
+  };
+
+  const handleOnSelect = (item) => {
+    // the item selected
+    console.log(item);
+  };
+
+  const handleOnFocus = () => {
+    console.log("Focused");
+  };
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: "block", textAlign: "left" }}>id: "Test"</span>
+        <span style={{ display: "block", textAlign: "left" }}>
+          name: Test 2
+        </span>
+      </>
+    );
+  };
+
+  const style = {
+    height: "8vw",
+  };
+
+  //###############################################
   return (
     <div className="App">
       {locationLoaded !== false ? (
@@ -28,6 +64,15 @@ function Functionality() {
           <div className="coords">
             <div>{currLocation.coords.latitude}</div>
             <div>{currLocation.coords.longitude}</div>
+          </div>
+          <div className="search">
+            <ReactSearchAutocomplete
+              items
+              onSearch={handleOnSearch}
+              onSelect={handleOnSelect}
+              formatResult={formatResult}
+              styling={style}
+            />
           </div>
         </div>
       ) : (

@@ -72,3 +72,8 @@ body{
   font-size: 3.5vw;
   justify-content: center;
 }
+.search{
+  height: 6vh;
+  width: 50vw;
+  padding-top: 2vw;
+}
