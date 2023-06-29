@@ -77,3 +77,8 @@ body{
   width: 50vw;
   padding-top: 2vw;
 }
+.search-bar-response{
+  display: flex;
+  gap: 1vw;
+  font-size: 3vw;
+}
