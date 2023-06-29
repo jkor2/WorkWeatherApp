@@ -60,3 +60,15 @@ body{
   
 }
 
+.title-location{
+  font-size: 4vw;
+  color: rgb(179, 179, 179);
+  font-weight: 700;
+}
+.coords{
+  display: flex;
+  gap: 3vw;
+  color: rgb(179, 179, 179);
+  font-size: 3.5vw;
+  justify-content: center;
+}
