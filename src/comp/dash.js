@@ -4,10 +4,10 @@ function Functionality() {
   const [locationLoaded, setLocationLoaded] = React.useState(false);
   //User location state
   const [currLocation, setCurrLocation] = React.useState();
-  console.log(currLocation.coords.latitude);
   React.useEffect(() => {
     const successCallback = (position) => {
       setCurrLocation(position);
+      console.log(position);
       setLocationLoaded(true);
     };
 
