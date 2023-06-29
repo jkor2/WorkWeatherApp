@@ -5,6 +5,7 @@ function Functionality() {
   const [locationLoaded, setLocationLoaded] = React.useState(false);
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
+  console.log(currLocation);
   React.useEffect(() => {
     const successCallback = (position) => {
       setCurrLocation(position);
@@ -66,7 +67,7 @@ function Functionality() {
   //###############################################
   return (
     <div className="App">
-      {locationLoaded !== false ? (
+      {locationLoaded ? (
         <div>
           <div className="title-location">Your Current Location Is</div>
           <div className="coords">
@@ -87,8 +88,20 @@ function Functionality() {
           </div>
         </div>
       ) : (
-        <div>Finding your current location...</div>
+        <div>Current Location Unknown</div>
       )}
+      <div className="search">
+        <ReactSearchAutocomplete
+          items={items.results}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          formatResult={formatResult}
+          styling={style}
+        />
+      </div>
     </div>
   );
 }
