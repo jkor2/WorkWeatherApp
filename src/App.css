@@ -138,6 +138,8 @@ body{
     padding: .5vw;
     font-weight: 700;
     font-size: 1.75vw;
+    background: white;
+
     }
     
     .div1-two { grid-area: 1 / 1 / 2 / 2; 
