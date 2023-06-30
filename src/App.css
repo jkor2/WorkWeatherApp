@@ -12,15 +12,13 @@
   align-items: center;
   overflow-y: hidden;
   overflow-x: hidden;
-  height: 100vw;
   width: 100vw;
-
 }
 .white-text{
   color: white;
   font-family: 'Source Sans 3', sans-serif;
   background: #0254a6;
-  width: 100vw
+  width: 100vw;
 }
 .title{
   font-size: 4vw;
@@ -94,8 +92,7 @@ body{
 }
 .overflow-x{
   overflow-x: scroll;
-
-  height: 100vw;
+  height: 30vw;  
   width: 100vw;
   overflow-y: hidden;
 }
@@ -177,3 +174,8 @@ body{
       font-size: 3vw;
       font-weight: 700;
     }
+    .chart-hold{
+      width: 100vw;
+      
+    }
+    

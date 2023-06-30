@@ -1,7 +1,95 @@
 import React from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 function Functionality() {
+  const [hourly, setHourlyChart] = React.useState({});
+
+  //register chart
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Hour x Hour Rain - 72 Hrs",
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: "5vw",
+          },
+        },
+      },
+    },
+  };
+
+  const labels = hourly.hourly
+    ? hourly.hourly.time.map(convertDateTime)
+    : ["null"];
+
+  function convertDateTime(dateTimeString) {
+    const dateObject = new Date(dateTimeString);
+    const dayOfWeek = getDayOfWeek(dateObject);
+    const hourOfDay = dateObject.getHours();
+    const formattedHour = hourOfDay % 12 || 12; // Convert to 12-hour format
+
+    const period = hourOfDay < 12 ? "AM" : "PM";
+
+    return `${dayOfWeek} ${formattedHour}:00 ${period}`;
+  }
+
+  function getDayOfWeek(date) {
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return weekdays[date.getDay()];
+  }
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Rain",
+        data: hourly.hourly ? hourly.hourly.precipitation : ["null"],
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+
+  //#############################################
+  //screen width
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  //3 Day hourly Breakdown
+  console.log(hourly);
   //Display 7 day forcast handler
   const [sevenDay, setSevenDay] = React.useState(false);
   //7 Day forcast data
@@ -43,11 +131,23 @@ function Functionality() {
   const handleOnSelect = (item) => {
     // the item selected
     //
+    //fetch(
+    //  `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,precipitation_probability_max&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FNew_York`
+    //)
+    //      .then((res) => res.json())
+    //    .then((data) => setSevenDayData(data));
+
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,precipitation_probability_max&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FNew_York`
+      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&models=best_match&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,precipitation_probability_max&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FNew_York`
     )
       .then((res) => res.json())
       .then((data) => setSevenDayData(data));
+
+    fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&hourly=precipitation_probability,precipitation&models=best_match&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FNew_York`
+    )
+      .then((res) => res.json())
+      .then((data) => setHourlyChart(data));
 
     setSevenDay(true);
   };
@@ -145,7 +245,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[0]}"
+                    {sevenDayData.daily.precipitation_sum[0]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -179,7 +279,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[1]}"
+                    {sevenDayData.daily.precipitation_sum[1]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -213,7 +313,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[2]}"
+                    {sevenDayData.daily.precipitation_sum[2]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -247,7 +347,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[3]}"
+                    {sevenDayData.daily.precipitation_sum[3]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -281,7 +381,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[4]}"
+                    {sevenDayData.daily.precipitation_sum[4]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -315,7 +415,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[5]}"
+                    {sevenDayData.daily.precipitation_sum[5]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -349,7 +449,7 @@ function Functionality() {
                 <div class="div4-two">
                   <div>MAX_RAIN</div>
                   <div className="bigger">
-                    {sevenDayData.daily.rain_sum[6]}"
+                    {sevenDayData.daily.precipitation_sum[6]}"
                   </div>
                 </div>
                 <div class="div5-two bigger">
@@ -362,6 +462,9 @@ function Functionality() {
         ) : (
           <div></div>
         )}
+      </div>
+      <div className="chart-hold">
+        <Bar options={options} data={data} />;
       </div>
     </div>
   );
