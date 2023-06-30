@@ -7,7 +7,9 @@
 }
 .App {
   text-align: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .white-text{
   color: white;
@@ -82,3 +84,94 @@ body{
   gap: 1vw;
   font-size: 3vw;
 }
+.overflow-x{
+  overflow-x: scroll;
+
+  height: 10vh;
+  width: 100vw;
+}
+.parent {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: green;
+  width: 150vw;
+  height: 9vh;
+  }
+  
+  .div1 { grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+ 
+  }
+  .div2 { grid-area: 1 / 2 / 2 / 3;
+
+
+  }
+  .div3 { grid-area: 1 / 3 / 2 / 4; 
+
+
+  }
+  .div4 { grid-area: 1 / 4 / 2 / 5;
+  
+
+  }
+  .div5 { grid-area: 1 / 5 / 2 / 6; 
+
+  }
+  .div6 { grid-area: 1 / 6 / 2 / 7;
+  
+
+  }
+  .div7 { grid-area: 1 / 7 / 2 / 8; }
+
+
+  .parent-two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: grey;
+    height: 100%;
+    width: 100%;
+    }
+    
+    .div1-two { grid-area: 1 / 1 / 2 / 2; 
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  font-size: 2vw;
+font-weight: 700;
+padding: 1vw;}
+
+    .div2-two { grid-area: 1 / 2 / 2 / 3; 
+      border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  font-size: 2vw;
+font-weight: 700;
+padding: 1vw}
+    .div3-two { grid-area: 2 / 1 / 3 / 2;
+      border: 1px solid black;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    font-size: 2vw;
+  font-weight: 700;
+  padding: 1vw}
+    .div4-two { grid-area: 2 / 2 / 3 / 3;
+      border: 1px solid black;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    font-size: 2vw;
+  font-weight: 700;
+  padding: 1vw}
+
+      .bigger{
+        font-size: 4vw;
+      }
