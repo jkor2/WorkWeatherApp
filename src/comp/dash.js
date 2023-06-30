@@ -77,6 +77,21 @@ function Functionality() {
 
   //###############################################
   //Validation need to render 7 day forecast sevenDay && sevenDayData && sevenDayData.daily
+
+  //convert date function
+  function convertDate(date) {
+    var dateParts = date.split("-"); // Split the string into year, month, and day
+    var year = parseInt(dateParts[0]);
+    var month = parseInt(dateParts[1]) - 1; // Months are zero-based (0-11)
+    var day = parseInt(dateParts[2]);
+
+    var date = new Date(year, month, day);
+
+    var weekday = date.toLocaleDateString("en-US", { weekday: "long" });
+
+    return weekday;
+  }
+
   return (
     <div className="App">
       {locationLoaded ? (
@@ -105,7 +120,40 @@ function Functionality() {
       <div className="overflow-x">
         {sevenDay && sevenDayData && sevenDayData.daily ? (
           <div class="parent">
-            <div className="div1"></div>
+            <div className="div1">
+              <div class="parent-two">
+                <div class="div1-two">
+                  <div>MIN_TEMP</div>
+                  <div className="bigger">
+                    {sevenDayData.daily.temperature_2m_min[0]}
+                  </div>
+                </div>
+                <div class="div2-two">
+                  <div>MAX_TEMP</div>
+                  <div className="bigger">
+                    {" "}
+                    {sevenDayData.daily.temperature_2m_max[0]}
+                  </div>{" "}
+                </div>
+                <div class="div3-two">
+                  <div>PRCP_PROB</div>
+                  <div className="bigger">
+                    {" "}
+                    {sevenDayData.daily.precipitation_probability_max[0]}%
+                  </div>
+                </div>
+                <div class="div4-two">
+                  <div>MAX_RAIN</div>
+                  <div className="bigger">
+                    {sevenDayData.daily.rain_sum[0]}"
+                  </div>
+                </div>
+                <div class="div5-two bigger">
+                  {" "}
+                  {convertDate(sevenDayData.daily.time[0])}{" "}
+                </div>
+              </div>
+            </div>
             <div className="div2"></div>
             <div className="div3"></div>
             <div className="div4"></div>
