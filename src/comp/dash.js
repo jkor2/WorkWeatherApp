@@ -11,9 +11,16 @@ import {
   Legend,
   LineElement,
 } from "chart.js";
+import "chartjs-plugin-annotation";
+
 import { Bar } from "react-chartjs-2";
 function Functionality() {
   const [hourly, setHourlyChart] = React.useState({});
+  //chart lables
+  const labels = hourly.hourly
+    ? hourly.hourly.time.map(convertDateTime)
+    : ["null"];
+  //curr time test
 
   //register chart
   ChartJS.register(
@@ -56,10 +63,6 @@ function Functionality() {
       },
     },
   };
-
-  const labels = hourly.hourly
-    ? hourly.hourly.time.map(convertDateTime)
-    : ["null"];
 
   function convertDateTime(dateTimeString) {
     const dateObject = new Date(dateTimeString);
@@ -114,12 +117,10 @@ function Functionality() {
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
   //3 Day hourly Breakdown
-  console.log(hourly);
   //Display 7 day forcast handler
   const [sevenDay, setSevenDay] = React.useState(false);
   //7 Day forcast data
   const [sevenDayData, setSevenDayData] = React.useState({});
-  console.log(sevenDayData);
   const [locationLoaded, setLocationLoaded] = React.useState(false);
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
