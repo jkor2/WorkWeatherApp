@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  LineElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 function Functionality() {
@@ -21,7 +22,9 @@ function Functionality() {
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    PointElement,
+    LineElement
   );
   const options = {
     responsive: true,
@@ -31,7 +34,7 @@ function Functionality() {
       },
       title: {
         display: true,
-        text: "Hour x Hour Rain - 72 Hrs",
+        text: "Precipitation_Prob_Vol - 120HRs",
       },
     },
     scales: {
@@ -86,11 +89,22 @@ function Functionality() {
     labels,
     datasets: [
       {
-        label: "Rain",
+        label: "PRCP_INCH",
         data: hourly.hourly ? hourly.hourly.precipitation : ["null"],
         backgroundColor: "black",
         borderWidth: 1,
-        barThickness: 8,
+        barThickness: 4,
+      },
+      {
+        label: "PRCP_PROB",
+        data: hourly.hourly
+          ? hourly.hourly.precipitation_probability
+          : ["null"],
+        backgroundColor: "grey",
+        borderWidth: 3,
+        type: "line",
+        yAxisID: "y-axis-2",
+        pointRadius: 1,
       },
     ],
   };
@@ -155,7 +169,7 @@ function Functionality() {
       .then((data) => setSevenDayData(data));
 
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&hourly=precipitation_probability,precipitation&models=best_match&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FNew_York`
+      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&hourly=precipitation_probability,precipitation&models=best_match&temperature_unit=fahrenheit&precipitation_unit=inch&forecast_days=5&timezone=America%2FNew_York`
     )
       .then((res) => res.json())
       .then((data) => setHourlyChart(data));
