@@ -40,6 +40,15 @@ function Functionality() {
           font: {
             size: "5vw",
           },
+          color: "black", // Change the color of the x-axis tick text
+        },
+        grid: {
+          color: "white", // Change the color of the x-axis grid lines
+        },
+      },
+      y: {
+        grid: {
+          color: "white", // Change the color of the y-axis grid lines
         },
       },
     },
@@ -79,7 +88,9 @@ function Functionality() {
       {
         label: "Rain",
         data: hourly.hourly ? hourly.hourly.precipitation : ["null"],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "black",
+        borderWidth: 1,
+        barThickness: 8,
       },
     ],
   };
@@ -460,12 +471,16 @@ function Functionality() {
             </div>
           </div>
         ) : (
-          <div></div>
+          <></>
         )}
       </div>
-      <div className="chart-hold">
-        <Bar options={options} data={data} />;
-      </div>
+      {sevenDay && sevenDayData && sevenDayData.daily ? (
+        <div className="chart-hold">
+          <Bar options={options} data={data} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

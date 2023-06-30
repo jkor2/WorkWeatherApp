@@ -4,6 +4,11 @@
   margin: 0px;
   padding: 0px;
 
+
+}
+body{
+  width: 100vw;
+
 }
 .App {
   text-align: center;
@@ -176,6 +181,7 @@ body{
     }
     .chart-hold{
       width: 100vw;
+      background: white;
       
     }
     
