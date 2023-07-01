@@ -10,10 +10,12 @@ import {
   Tooltip,
   Legend,
   LineElement,
+  LineController,
+  BarController,
 } from "chart.js";
 import "chartjs-plugin-annotation";
 
-import { Bar } from "react-chartjs-2";
+import { Bar, Chart, Line } from "react-chartjs-2";
 function Functionality() {
   const [hourly, setHourlyChart] = React.useState({});
   //chart lables
@@ -31,7 +33,9 @@ function Functionality() {
     Tooltip,
     Legend,
     PointElement,
-    LineElement
+    LineElement,
+    LineController,
+    BarController
   );
   const options = {
     responsive: true,
@@ -50,15 +54,21 @@ function Functionality() {
           font: {
             size: "5vw",
           },
-          color: "black", // Change the color of the x-axis tick text
+          color: "black",
         },
         grid: {
-          color: "white", // Change the color of the x-axis grid lines
+          color: "white",
         },
       },
       y: {
         grid: {
-          color: "white", // Change the color of the y-axis grid lines
+          color: "white",
+        },
+      },
+      y2: {
+        position: "right",
+        grid: {
+          color: "white",
         },
       },
     },
