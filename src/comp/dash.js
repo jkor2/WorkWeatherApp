@@ -137,6 +137,7 @@ function Functionality() {
   React.useEffect(() => {
     const successCallback = (position) => {
       setCurrLocation(position);
+      handleOnSelect(position.coords);
       setLocationLoaded(true);
     };
 
