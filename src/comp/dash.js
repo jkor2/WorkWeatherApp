@@ -138,6 +138,8 @@ function Functionality() {
     const successCallback = (position) => {
       setCurrLocation(position);
       handleOnSelect(position.coords);
+      //Need to get current town based on coords from the NWS api
+
       setLocationLoaded(true);
     };
 
