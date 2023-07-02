@@ -34,8 +34,8 @@ function Functionality() {
     Legend,
     PointElement,
     LineElement,
-    LineController, //Required for multi-type charts
-    BarController //required for multi-type charts
+    LineController, //Required for multi-type charts - for deploys
+    BarController //required for multi-type charts - for deploys
   );
   const options = {
     responsive: true,
