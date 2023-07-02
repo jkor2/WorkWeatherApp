@@ -34,7 +34,7 @@ function Functionality() {
     Legend,
     PointElement,
     LineElement,
-    LineController,
+    LineController, //Required for multi-type charts
     BarController
   );
   const options = {
