@@ -35,7 +35,7 @@ function Functionality() {
     PointElement,
     LineElement,
     LineController, //Required for multi-type charts
-    BarController
+    BarController //required for multi-type charts
   );
   const options = {
     responsive: true,
