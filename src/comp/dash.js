@@ -131,15 +131,22 @@ function Functionality() {
   const [sevenDay, setSevenDay] = React.useState(false);
   //7 Day forcast data
   const [sevenDayData, setSevenDayData] = React.useState({});
+  //Name of the current location
+  const [currLocationName, setCurrLocationName] = React.useState({});
   const [locationLoaded, setLocationLoaded] = React.useState(false);
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
+  console.log(currLocation);
   React.useEffect(() => {
     const successCallback = (position) => {
       setCurrLocation(position);
       handleOnSelect(position.coords);
       //Need to get current town based on coords from the NWS api
-
+      fetch(
+        `https://api.weather.gov/points/${position.coords.latitude},${position.coords.longitude}`
+      )
+        .then((res) => res.json())
+        .then((data) => setCurrLocationName(data.properties));
       setLocationLoaded(true);
     };
 
@@ -230,15 +237,16 @@ function Functionality() {
 
     return weekday;
   }
+  console.log(currLocationName);
 
   return (
     <div className="App">
-      {locationLoaded ? (
+      {currLocationName.relativeLocation && currLocation && locationLoaded ? (
         <div>
-          <div className="title-location">Your Current Location Is</div>
+          <div className="title-location">Your are Currently near:</div>
           <div className="coords">
-            <div>{currLocation.coords.latitude}</div>
-            <div>{currLocation.coords.longitude}</div>
+            <div>{currLocationName.relativeLocation.properties.city}</div>
+            <div>{currLocationName.relativeLocation.properties.state}</div>
           </div>
         </div>
       ) : (
