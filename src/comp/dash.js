@@ -134,6 +134,9 @@ function Functionality() {
   //Name of the current location
   const [currLocationName, setCurrLocationName] = React.useState({});
   const [locationLoaded, setLocationLoaded] = React.useState(false);
+  //Humidity/Percep data holder
+  const [humidityData, setHumidityData] = React.useState({});
+  console.log(humidityData);
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
   React.useEffect(() => {
@@ -193,6 +196,12 @@ function Functionality() {
     )
       .then((res) => res.json())
       .then((data) => setHourlyChart(data));
+
+    fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&hourly=relativehumidity_2m,precipitation_probability`
+    )
+      .then((res) => res.json())
+      .then((data) => setHumidityData(data));
 
     setSevenDay(true);
   };
