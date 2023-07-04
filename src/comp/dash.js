@@ -136,7 +136,6 @@ function Functionality() {
   const [locationLoaded, setLocationLoaded] = React.useState(false);
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
-  console.log(currLocation);
   React.useEffect(() => {
     const successCallback = (position) => {
       setCurrLocation(position);
@@ -237,7 +236,6 @@ function Functionality() {
 
     return weekday;
   }
-  console.log(currLocationName);
 
   return (
     <div className="App">
