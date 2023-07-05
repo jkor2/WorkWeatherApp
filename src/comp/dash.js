@@ -37,6 +37,20 @@ function Functionality() {
     LineController, //Required for multi-type charts - for deploys
     BarController //required for multi-type charts - for deploys
   );
+
+  const optionsLine = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
+    },
+  };
+
   const options = {
     responsive: true,
     plugins: {
@@ -198,7 +212,7 @@ function Functionality() {
       .then((data) => setHourlyChart(data));
 
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&hourly=relativehumidity_2m,precipitation_probability`
+      `https://api.open-meteo.com/v1/forecast?latitude=${item.latitude}&longitude=${item.longitude}&&hourly=relativehumidity_2m,precipitation_probability&temperature_unit=fahrenheit&precipitation_unit=inch&forecast_days=5&timezone=America%2FNew_York`
     )
       .then((res) => res.json())
       .then((data) => setHumidityData(data));
@@ -520,6 +534,14 @@ function Functionality() {
       {sevenDay && sevenDayData && sevenDayData.daily ? (
         <div className="chart-hold">
           <Bar options={options} data={data} />
+        </div>
+      ) : (
+        <></>
+      )}
+
+      {sevenDay && sevenDayData && sevenDayData.daily ? (
+        <div className="chart-hold">
+          <Line options={optionsLine} data={data} />
         </div>
       ) : (
         <></>
