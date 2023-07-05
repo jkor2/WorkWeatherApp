@@ -18,6 +18,9 @@ import "chartjs-plugin-annotation";
 import { Bar, Chart, Line } from "react-chartjs-2";
 function Functionality() {
   const [hourly, setHourlyChart] = React.useState({});
+  //Humidity/Percep data holder
+  const [humidityData, setHumidityData] = React.useState({});
+  console.log(humidityData);
   //chart lables
   const labels = hourly.hourly
     ? hourly.hourly.time.map(convertDateTime)
@@ -114,6 +117,28 @@ function Functionality() {
 
   const dataLine = {
     labels,
+    datasets: [
+      {
+        label: "PRCP_PROB",
+        data: hourly.hourly
+          ? hourly.hourly.precipitation_probability
+          : ["null"],
+        backgroundColor: "grey",
+        borderWidth: 3,
+        type: "line",
+        pointRadius: 1,
+      },
+      {
+        label: "REL_HUMID",
+        data: humidityData.hourly
+          ? humidityData.hourly.relativehumidity_2m
+          : ["null"],
+        backgroundColor: "grey",
+        borderWidth: 3,
+        type: "line",
+        pointRadius: 1,
+      },
+    ],
   };
 
   const data = {
@@ -152,9 +177,7 @@ function Functionality() {
   //Name of the current location
   const [currLocationName, setCurrLocationName] = React.useState({});
   const [locationLoaded, setLocationLoaded] = React.useState(false);
-  //Humidity/Percep data holder
-  const [humidityData, setHumidityData] = React.useState({});
-  console.log(humidityData);
+
   //User location state
   const [currLocation, setCurrLocation] = React.useState({});
   React.useEffect(() => {
@@ -545,7 +568,7 @@ function Functionality() {
 
       {sevenDay && sevenDayData && sevenDayData.daily ? (
         <div className="chart-hold">
-          <Line options={optionsLine} data={data} />
+          <Line options={optionsLine} data={dataLine} />
         </div>
       ) : (
         <></>
