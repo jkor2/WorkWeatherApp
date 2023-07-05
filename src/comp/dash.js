@@ -180,6 +180,8 @@ function Functionality() {
   //screen width
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
+
+  console.log(screenWidth, screenHeight);
   //3 Day hourly Breakdown
   //Display 7 day forcast handler
   const [sevenDay, setSevenDay] = React.useState(false);
@@ -300,299 +302,309 @@ function Functionality() {
 
   return (
     <div className="App">
-      {currLocationName.relativeLocation && currLocation && locationLoaded ? (
+      {screenHeight < 1000 && screenWidth < 500 ? (
         <div>
-          <div className="title-location">Your are Currently near:</div>
-          <div className="coords">
-            <div>{currLocationName.relativeLocation.properties.city}</div>
-            <div>{currLocationName.relativeLocation.properties.state}</div>
+          {currLocationName.relativeLocation &&
+          currLocation &&
+          locationLoaded ? (
+            <div>
+              <div className="title-location">Your are Currently near:</div>
+              <div className="coords">
+                <div>{currLocationName.relativeLocation.properties.city}</div>
+                <div>{currLocationName.relativeLocation.properties.state}</div>
+              </div>
+            </div>
+          ) : (
+            <div>Current Location Unknown</div>
+          )}
+          <div className="search">
+            <ReactSearchAutocomplete
+              items={items.results}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              onFocus={handleOnFocus}
+              autoFocus
+              formatResult={formatResult}
+              styling={style}
+            />
+          </div>
+          <div className="overflow-x">
+            {sevenDay && sevenDayData && sevenDayData.daily ? (
+              <div class="parent">
+                <div className="div1">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[0]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[0]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[0]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[0]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[0])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div2">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[1]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[1]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[1]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[1]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[1])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div3">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[2]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[2]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[2]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[2]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[2])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div4">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[3]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[3]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[3]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[3]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[3])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div5">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[4]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[4]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[4]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[4]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[4])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div6">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[5]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[5]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[5]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[5]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[5])}{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="div7">
+                  <div class="parent-two">
+                    <div class="div1-two">
+                      <div>MIN_TEMP</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.temperature_2m_min[6]}
+                      </div>
+                    </div>
+                    <div class="div2-two">
+                      <div>MAX_TEMP</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.temperature_2m_max[6]}
+                      </div>{" "}
+                    </div>
+                    <div class="div3-two">
+                      <div>PRCP_PROB</div>
+                      <div className="bigger">
+                        {" "}
+                        {sevenDayData.daily.precipitation_probability_max[6]}%
+                      </div>
+                    </div>
+                    <div class="div4-two">
+                      <div>MAX_RAIN</div>
+                      <div className="bigger">
+                        {sevenDayData.daily.precipitation_sum[6]}"
+                      </div>
+                    </div>
+                    <div class="div5-two bigger">
+                      {" "}
+                      {convertDate(sevenDayData.daily.time[6])}{" "}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          {sevenDay && sevenDayData && sevenDayData.daily ? (
+            <div className="chart-hold">
+              <Bar options={options} data={data} />
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="chart-line-two">
+            {sevenDay && sevenDayData && sevenDayData.daily ? (
+              <div className="chart-hold">
+                <Line options={optionsLine} data={dataLine} />
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className="github-plug">
+            <a
+              href="https://github.com/JakeKorobellis/WorkWeatherApp"
+              target="_blank"
+            >
+              View Code
+            </a>
           </div>
         </div>
       ) : (
-        <div>Current Location Unknown</div>
-      )}
-      <div className="search">
-        <ReactSearchAutocomplete
-          items={items.results}
-          onSearch={handleOnSearch}
-          onHover={handleOnHover}
-          onSelect={handleOnSelect}
-          onFocus={handleOnFocus}
-          autoFocus
-          formatResult={formatResult}
-          styling={style}
-        />
-      </div>
-      <div className="overflow-x">
-        {sevenDay && sevenDayData && sevenDayData.daily ? (
-          <div class="parent">
-            <div className="div1">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[0]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[0]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[0]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[0]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[0])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div2">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[1]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[1]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[1]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[1]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[1])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div3">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[2]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[2]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[2]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[2]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[2])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div4">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[3]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[3]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[3]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[3]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[3])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div5">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[4]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[4]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[4]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[4]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[4])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div6">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[5]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[5]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[5]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[5]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[5])}{" "}
-                </div>
-              </div>
-            </div>
-            <div className="div7">
-              <div class="parent-two">
-                <div class="div1-two">
-                  <div>MIN_TEMP</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.temperature_2m_min[6]}
-                  </div>
-                </div>
-                <div class="div2-two">
-                  <div>MAX_TEMP</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.temperature_2m_max[6]}
-                  </div>{" "}
-                </div>
-                <div class="div3-two">
-                  <div>PRCP_PROB</div>
-                  <div className="bigger">
-                    {" "}
-                    {sevenDayData.daily.precipitation_probability_max[6]}%
-                  </div>
-                </div>
-                <div class="div4-two">
-                  <div>MAX_RAIN</div>
-                  <div className="bigger">
-                    {sevenDayData.daily.precipitation_sum[6]}"
-                  </div>
-                </div>
-                <div class="div5-two bigger">
-                  {" "}
-                  {convertDate(sevenDayData.daily.time[6])}{" "}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      {sevenDay && sevenDayData && sevenDayData.daily ? (
-        <div className="chart-hold">
-          <Bar options={options} data={data} />
+        <div>
+          <h1>FOR MOBILE ONLY</h1>
         </div>
-      ) : (
-        <></>
       )}
-      <div className="chart-line-two">
-        {sevenDay && sevenDayData && sevenDayData.daily ? (
-          <div className="chart-hold">
-            <Line options={optionsLine} data={dataLine} />
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      <div className="github-plug">
-        <a
-          href="https://github.com/JakeKorobellis/WorkWeatherApp"
-          target="_blank"
-        >
-          View Code
-        </a>
-      </div>
     </div>
   );
 }
