@@ -133,7 +133,7 @@ function Functionality() {
         data: humidityData.hourly
           ? humidityData.hourly.relativehumidity_2m
           : ["null"],
-        backgroundColor: "grey",
+        backgroundColor: "black",
         borderWidth: 3,
         type: "line",
         pointRadius: 1,
