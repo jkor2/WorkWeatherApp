@@ -19,6 +19,17 @@ body{
   height: auto;
   
 }
+
+.app-two{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  width: 100vw;
+  height: auto;
+}
+
 .white-text{
   color: white;
   font-family: 'Source Sans 3', sans-serif;
@@ -88,6 +99,7 @@ body{
   width: 50vw;
   padding-top: 2vw;
   margin-bottom: 10vw;
+
 
 }
 .search-bar-response{

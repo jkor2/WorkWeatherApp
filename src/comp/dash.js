@@ -303,7 +303,7 @@ function Functionality() {
   return (
     <div className="App">
       {screenHeight < 1000 && screenWidth < 500 ? (
-        <div>
+        <div className="app-two">
           {currLocationName.relativeLocation &&
           currLocation &&
           locationLoaded ? (
