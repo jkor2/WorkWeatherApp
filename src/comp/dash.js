@@ -586,7 +586,10 @@ function Functionality() {
         )}
       </div>
       <div className="github-plug">
-        <a href="https://github.com/JakeKorobellis" target="_blank">
+        <a
+          href="https://github.com/JakeKorobellis/WorkWeatherApp"
+          target="_blank"
+        >
           View Code GitHub
         </a>
       </div>
