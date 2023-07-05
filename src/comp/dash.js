@@ -48,7 +48,25 @@ function Functionality() {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: "Precipitation_Prob_Humid - 120HRs",
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: "5vw",
+          },
+          color: "black",
+        },
+        grid: {
+          color: "white",
+        },
+      },
+      y: {
+        grid: {
+          color: "white",
+        },
       },
     },
   };
@@ -77,12 +95,6 @@ function Functionality() {
         },
       },
       y: {
-        grid: {
-          color: "white",
-        },
-      },
-      y2: {
-        position: "right",
         grid: {
           color: "white",
         },
@@ -564,14 +576,15 @@ function Functionality() {
       ) : (
         <></>
       )}
-
-      {sevenDay && sevenDayData && sevenDayData.daily ? (
-        <div className="chart-hold">
-          <Line options={optionsLine} data={dataLine} />
-        </div>
-      ) : (
-        <></>
-      )}
+      <div className="chart-line-two">
+        {sevenDay && sevenDayData && sevenDayData.daily ? (
+          <div className="chart-hold">
+            <Line options={optionsLine} data={dataLine} />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }
