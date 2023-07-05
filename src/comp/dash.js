@@ -20,7 +20,6 @@ function Functionality() {
   const [hourly, setHourlyChart] = React.useState({});
   //Humidity/Percep data holder
   const [humidityData, setHumidityData] = React.useState({});
-  console.log(humidityData);
   //chart lables
   const labels = hourly.hourly
     ? hourly.hourly.time.map(convertDateTime)
