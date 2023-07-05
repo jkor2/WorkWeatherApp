@@ -590,7 +590,7 @@ function Functionality() {
           href="https://github.com/JakeKorobellis/WorkWeatherApp"
           target="_blank"
         >
-          View code on: GitHub
+          View Code
         </a>
       </div>
     </div>
