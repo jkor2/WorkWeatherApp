@@ -191,7 +191,7 @@ body{
     }
     .github-plug{
       width: 100vw;
-      height: 35vw;
+      height: 10vw;
       display: flex;
       justify-content: center;
       align-items: flex-end;
