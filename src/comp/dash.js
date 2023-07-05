@@ -112,6 +112,10 @@ function Functionality() {
     return weekdays[date.getDay()];
   }
 
+  const dataLine = {
+    labels,
+  };
+
   const data = {
     labels,
     datasets: [
