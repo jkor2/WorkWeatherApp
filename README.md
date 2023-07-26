@@ -1,7 +1,12 @@
 # Work Weather App
 
-Weather app - make it easier to manage weather info for work.
+This web-app was created using React
+created as quickly as possible due to 
+being in busy season will give understanding
+to why everything is stored in Dash.js 
 
-Was made as fast as possible as we are currently in busy season. 
+To add, this is specifically made for moblile use
+opening on anything but mobile is incompatible. 
 
-That is why all is under dash.js 
+View here: 
+https://work-weather-app.netlify.app
